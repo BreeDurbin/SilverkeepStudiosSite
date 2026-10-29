@@ -20,16 +20,12 @@ const features = [
 		body: 'Nothing works without the guilds, and everything is worse because of them. Price-fixing bakers, licensed roof repairs and watchmen on the take: you feel the guilds before you meet a single member.',
 	},
 	{
-		title: 'As deep as you want to dive',
-		body: 'Lore waits in libraries, conversations and forgotten corners for those who look, and is never dumped on those who do not. Every cinematic can be skipped.',
-	},
-	{
 		title: 'Solve it your way',
 		body: 'Pick the pocket that holds the key, slip past the fight unseen, or talk your way out. Quests open up through the rules themselves, not through scripted exceptions.',
 	},
 	{
 		title: 'Build your own worlds',
-		body: 'Make modules with the toolset, script them in Silverscript, and define classes, races, feats and factions in plain TOML. Play alone, host friends, or run a persistent world on a dedicated server.',
+		body: 'Make modules with the toolset, script them in AngelScript through the Silverscript API, and define classes, races, feats and factions in plain TOML. Play alone, host friends, or run a persistent world on a dedicated server.',
 	},
 ];
 
@@ -92,8 +88,10 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 			<div>
 				<h2 class="section-title">Made to be modded</h2>
 				<p>
-					Game data lives in TOML files you can read and change, and creatures run Silverscript, our
-					scripting language, in response to what happens in the world. Campaign modules
+					Game data lives in TOML files you can read and change. Creatures run scripts written in
+					<a href="https://www.angelcode.com/angelscript/">AngelScript</a>, the open-source scripting
+					language by Andreas Jönsson, and reach the game through Silverscript,
+					Project Silverkeep's scripting API for AngelScript. Campaign modules
 					and override folders let you layer your own content on top.
 				</p>
 				<p>

@@ -1,12 +1,14 @@
 ---
 title: Getting started with Silverscript
-description: Where Silverscript files live, how creatures run them, and how scripts reach the game.
+description: Where AngelScript scripts live, how creatures run them, and how they reach the game through the Silverscript API.
 sidebar:
   label: Silverscript basics
   order: 1
 ---
 
-Silverscript is Project Silverkeep's scripting language. It's built on [AngelScript](https://www.angelcode.com/angelscript/), a statically typed language with C++-like syntax, so if you've written C++, C# or Java it will look familiar.
+Project Silverkeep's scripts are written in [AngelScript](https://www.angelcode.com/angelscript/), an open-source scripting language by Andreas Jönsson. It's statically typed with C++-like syntax, so if you've written C++, C# or Java it will look familiar. The [AngelScript manual](https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script.html) covers the language itself.
+
+**Silverscript** is Project Silverkeep's scripting API for AngelScript: the game objects, types and functions your scripts call. This page covers how scripts are attached to the game and how they use that API.
 
 ## Where scripts live
 

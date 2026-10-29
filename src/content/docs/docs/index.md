@@ -6,7 +6,7 @@ sidebar:
   order: 0
 ---
 
-Project Silverkeep is built to be modded. Game rules and content live in data files you can edit, and creatures run scripts written in **Silverscript**, the game's scripting language.
+Project Silverkeep is built to be modded. Game rules and content live in data files you can edit, and creatures run scripts written in [AngelScript](https://www.angelcode.com/angelscript/). **Silverscript** is Project Silverkeep's scripting API for AngelScript: the objects, types and functions scripts use to reach the game.
 
 These docs are for people who want to script or mod the game. They're early, like the game itself, and will grow with it.
 
@@ -21,3 +21,7 @@ The reference pages are generated from the game itself, so they match the curren
 
 - [Silverscript API](reference/silverscript/): every object, type, enum and global function scripts can use.
 - [Data formats](reference/data/): every TOML data format, field by field, with a downloadable schema for each.
+
+## Built with AngelScript
+
+Project Silverkeep's scripting runs on [AngelScript](https://www.angelcode.com/angelscript/), an open-source scripting language by Andreas Jönsson, used under the [zlib license](https://opensource.org/license/zlib). The language is his work; Silverscript is the game's API on top of it.
