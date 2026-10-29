@@ -1,0 +1,238 @@
+---
+import { getCollection } from 'astro:content';
+import { Code } from 'astro:components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Drawn from Silverkeep/Docs/Design/Design_Pillars.md and Tonal_Pillars.md.
+const features = [
+	{
+		title: 'Your choices write the story',
+		body: 'No invulnerable plot fences and no unkillable quest-givers. If you kill the one person who knew the way forward, search their room: the story finds another path, and it is one you made.',
+	},
+	{
+		title: 'Crunchy, by the numbers',
+		body: 'Built on the 3.5 edition System Reference Document rules: ability scores, skill checks, saving throws, feats and class progression, resolved the way a tabletop table would.',
+	},
+	{
+		title: 'Cities run by guilds',
+		body: 'Nothing works without the guilds, and everything is worse because of them. Price-fixing bakers, licensed roof repairs and watchmen on the take: you feel the guilds before you meet a single member.',
+	},
+	{
+		title: 'As deep as you want to dive',
+		body: 'Lore waits in libraries, conversations and forgotten corners for those who look, and is never dumped on those who do not. Every cinematic can be skipped.',
+	},
+	{
+		title: 'Solve it your way',
+		body: 'Pick the pocket that holds the key, slip past the fight unseen, or talk your way out. Quests open up through the rules themselves, not through scripted exceptions.',
+	},
+	{
+		title: 'Build your own worlds',
+		body: 'Make modules with the toolset, script them in Silverscript, and define classes, races, feats and factions in plain TOML. Play alone, host friends, or run a persistent world on a dedicated server.',
+	},
+];
+
+const sampleScript = `// Content/Angelscripts/Guard_OnHeartbeat.as
+void OnHeartbeat(FEntityId Self)
+{
+    FCreatureData Guard =
+        GetEntityApi().GetCreatureData(Self);
+
+    GetScriptApi().LogInfo(
+        Guard.Metadata.Name + " keeps watch.");
+}`;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
+---
+
+<BaseLayout description="Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD rules, where the story emerges from your choices and you can build worlds of your own.">
+	<section class="hero">
+		<div class="container hero-inner">
+			<p class="eyebrow">Silverkeep Studios</p>
+			<h1>Project Silverkeep</h1>
+			<p class="tagline">A fantasy role-playing game where the story is whatever you make of it.</p>
+			<p class="hero-copy">
+				Explore guild-ridden cities under rules that bend for no one, play on your own or with friends, and
+				build worlds of your own with the same tools we use. In development on Unreal Engine.
+			</p>
+			<div class="hero-actions">
+				<a class="button button-primary" href={`${base}/blog/`}>Read the devlog</a>
+				<a class="button button-secondary" href={`${base}/docs/`}>Explore the docs</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<h2 class="section-title">What we're building</h2>
+			<p class="section-lead">
+				Influenced by Neverwinter Nights and the tabletop games it grew from, Project Silverkeep is about
+				freedom, consequence, and worlds that players can make their own.
+			</p>
+			<ul class="features">
+				{
+					features.map((feature) => (
+						<li class="feature">
+							<h3>{feature.title}</h3>
+							<p>{feature.body}</p>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container modding">
+			<div>
+				<h2 class="section-title">Made to be modded</h2>
+				<p>
+					Game data lives in TOML files you can read and change, and creatures run Silverscript, our
+					scripting language, in response to what happens in the world. Campaign modules
+					and override folders let you layer your own content on top.
+				</p>
+				<p>
+					The <a href={`${base}/docs/`}>documentation</a> covers the Silverscript API and every data format,
+					generated straight from the game so it stays current.
+				</p>
+			</div>
+			<div class="code-panel">
+				<Code code={sampleScript} lang="cpp" theme="github-dark-dimmed" />
+			</div>
+		</div>
+	</section>
+
+	{
+		posts.length > 0 && (
+			<section class="section">
+				<div class="container">
+					<h2 class="section-title">From the devlog</h2>
+					<ul class="post-list">
+						{posts.map((post) => (
+							<li>
+								<a href={`${base}/blog/${post.id}/`}>{post.data.title}</a>
+								<p class="post-meta">
+									<time datetime={post.data.pubDate.toISOString()}>{dateFormat.format(post.data.pubDate)}</time>
+								</p>
+								<p>{post.data.description}</p>
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+		)
+	}
+</BaseLayout>
+
+<style>
+	.hero {
+		position: relative;
+		padding: 5rem 0 3rem;
+		background:
+			radial-gradient(60rem 26rem at 50% -6rem, var(--glow), transparent 70%),
+			linear-gradient(to bottom, var(--bg-raised), var(--bg));
+		border-bottom: 1px solid var(--panel-border);
+		text-align: center;
+	}
+
+	.hero-inner {
+		max-width: 46rem;
+	}
+
+	.hero h1 {
+		font-size: clamp(2.25rem, 7vw, 4rem);
+		margin: 0 0 1rem;
+	}
+
+	.tagline {
+		font-family: var(--font-display);
+		font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+		color: var(--accent);
+		margin: 0 0 1.25rem;
+	}
+
+	.hero-copy {
+		color: var(--text);
+		margin: 0 auto 2rem;
+		max-width: 38rem;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 0.75rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.features {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+		gap: 1rem;
+	}
+
+	.feature {
+		background: var(--panel);
+		border: 1px solid var(--panel-border);
+		border-top: 2px solid var(--accent);
+		border-radius: 8px;
+		padding: 1.25rem 1.35rem;
+	}
+
+	.feature h3 {
+		font-size: 1.05rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.feature p {
+		margin: 0;
+		font-size: 0.97rem;
+	}
+
+	.modding {
+		display: grid;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	@media (min-width: 56rem) {
+		.modding {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.code-panel {
+		min-width: 0;
+	}
+
+	/* The sample uses a dark syntax theme, so its panel stays dark in both site themes. */
+	.code-panel :global(pre) {
+		background: #1d1f1d !important;
+		border-color: #443326;
+	}
+
+	.post-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.post-list a {
+		font-family: var(--font-display);
+		font-size: 1.2rem;
+		text-decoration: none;
+	}
+
+	.post-list p {
+		margin: 0.25rem 0 0;
+	}
+</style>

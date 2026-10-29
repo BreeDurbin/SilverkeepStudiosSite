@@ -1,0 +1,6 @@
+/* Cinzel is the display face the game's UI uses. Body text stays on the system font for readability. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
+
+:root {
+	--font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+}

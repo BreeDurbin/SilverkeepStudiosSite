@@ -1,0 +1,14 @@
+# Build output and caches
+dist/
+.astro/
+node_modules/
+
+# Generated from the Silverkeep repo by `npm run docs:gen` / the deploy workflow
+src/content/docs/docs/reference/
+public/schemas/
+
+# Logs and local env
+npm-debug.log*
+.env
+.env.*
+.DS_Store

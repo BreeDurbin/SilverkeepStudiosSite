@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
+---
+
+<BaseLayout title="Blog" description="Development updates from Silverkeep Studios on Project Silverkeep.">
+	<div class="container blog">
+		<p class="eyebrow">Devlog</p>
+		<h1>Blog</h1>
+		<p class="section-lead">Development updates on Project Silverkeep.</p>
+
+		{posts.length === 0 && <p>No posts yet.</p>}
+		<ol class="posts">
+			{
+				posts.map((post) => (
+					<li>
+						<article>
+							<h2>
+								<a href={`${base}/blog/${post.id}/`}>{post.data.title}</a>
+							</h2>
+							<p class="post-meta">
+								<time datetime={post.data.pubDate.toISOString()}>{dateFormat.format(post.data.pubDate)}</time>
+							</p>
+							<p>{post.data.description}</p>
+						</article>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</BaseLayout>
+
+<style>
+	.blog {
+		padding-top: 3rem;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 5vw, 2.75rem);
+		margin: 0 0 0.5rem;
+	}
+
+	.posts {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
+
+	article {
+		background: var(--panel);
+		border: 1px solid var(--panel-border);
+		border-radius: 8px;
+		padding: 1.25rem 1.5rem;
+	}
+
+	article h2 {
+		font-size: 1.35rem;
+		margin: 0;
+	}
+
+	article h2 a {
+		text-decoration: none;
+	}
+
+	article p {
+		margin: 0.4rem 0 0;
+	}
+</style>

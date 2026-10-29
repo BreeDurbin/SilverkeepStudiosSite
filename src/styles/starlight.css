@@ -1,0 +1,41 @@
+/*
+ * Starlight theme in the game's palette (Silverkeep/Docs/Design/Color_Palette.md):
+ * charcoal slate backgrounds, sepia panels, parchment text, antique gold accents.
+ * Light mode swaps to ivory backgrounds with sepia text and burgundy accents.
+ */
+
+:root {
+	--sl-color-accent-low: #3b3023;
+	--sl-color-accent: #b89b62;
+	--sl-color-accent-high: #e8d8b8;
+	--sl-color-white: #f0e6d2;
+	--sl-color-gray-1: #e8d8b8;
+	--sl-color-gray-2: #cdbfa3;
+	--sl-color-gray-3: #a3967e;
+	--sl-color-gray-4: #6f665a;
+	--sl-color-gray-5: #4a4540;
+	--sl-color-gray-6: #383a38;
+	--sl-color-black: #262826;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #ecdcc8;
+	--sl-color-accent: #713f3b;
+	--sl-color-accent-high: #4a2622;
+	--sl-color-white: #2a1f17;
+	--sl-color-gray-1: #443326;
+	--sl-color-gray-2: #5a4a3c;
+	--sl-color-gray-3: #7a6a58;
+	--sl-color-gray-4: #a3967e;
+	--sl-color-gray-5: #cdbfa3;
+	--sl-color-gray-6: #e8d8b8;
+	--sl-color-gray-7: #efe5cf;
+	--sl-color-black: #f7f0e2;
+}
+
+.site-title,
+.sl-markdown-content :is(h1, h2),
+h1#_top {
+	font-family: var(--font-display);
+	letter-spacing: 0.02em;
+}

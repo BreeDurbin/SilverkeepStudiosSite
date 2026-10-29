@@ -1,0 +1,66 @@
+---
+title: Getting started with Silverscript
+description: Where Silverscript files live, how creatures run them, and how scripts reach the game.
+sidebar:
+  label: Silverscript basics
+  order: 1
+---
+
+Silverscript is Project Silverkeep's scripting language. It's built on [AngelScript](https://www.angelcode.com/angelscript/), a statically typed language with C++-like syntax, so if you've written C++, C# or Java it will look familiar.
+
+## Where scripts live
+
+Scripts are `.as` files under the game's `Content/Angelscripts/` folder. Each file is compiled on first use and cached.
+
+## Attaching scripts to creatures
+
+A creature template (a TOML file in `Content/Data/Creatures/`) names the scripts to run on its events in a `[script_hooks]` table. Paths are relative to `Content/`:
+
+```toml
+[script_hooks]
+on_heartbeat = "/Angelscripts/Guard_OnHeartbeat.as"
+```
+
+Each hook calls a function with a fixed name and signature in its file. The heartbeat hook calls:
+
+```cpp
+void OnHeartbeat(FEntityId Self)
+```
+
+`Self` is the creature the script runs for.
+
+:::note
+The creature format already lists hooks for spawning, death, damage, dialogue and more (see the [creature data format](../../reference/data/creature/)), but only `on_heartbeat` is called in the current build. The others will be wired up as those systems arrive.
+:::
+
+## Reaching the game
+
+Scripts don't touch the game's internals. They go through a few API objects, each with a global getter:
+
+| Getter | What it covers |
+|---|---|
+| `GetEntityApi()` | Creatures and items: creating, health, ability scores, inventory, levels, feats and skills. |
+| `GetScriptApi()` | Logging, plus variables you can store globally or on an entity. |
+| `GetFactionApi()` | Factions, standing, Fame and Infamy, offenses and ranks. |
+
+The [Silverscript API reference](../../reference/silverscript/) lists every method.
+
+## A first script
+
+This heartbeat script counts heartbeats in a variable stored on the creature, and logs a line every tenth one:
+
+```cpp
+void OnHeartbeat(FEntityId Self)
+{
+    int Beats = GetScriptApi().GetLocalInt(Self, "beats") + 1;
+    GetScriptApi().SetLocalInt(Self, "beats", Beats);
+
+    if (Beats % 10 == 0)
+    {
+        FCreatureData Creature = GetEntityApi().GetCreatureData(Self);
+        GetScriptApi().LogInfo(Creature.Metadata.Name + " is still keeping watch.");
+    }
+}
+```
+
+Save it as `Content/Angelscripts/Guard_OnHeartbeat.as` and point a creature's `on_heartbeat` at it.

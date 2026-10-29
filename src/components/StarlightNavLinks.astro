@@ -1,0 +1,24 @@
+---
+// Replaces Starlight's social icons slot in the docs header with links back to the rest of the site.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<nav class="site-links" aria-label="Site">
+	<a href={`${base}/`}>Home</a>
+	<a href={`${base}/blog/`}>Blog</a>
+</nav>
+
+<style>
+	.site-links {
+		display: flex;
+		gap: 1rem;
+	}
+	a {
+		color: var(--sl-color-text-accent);
+		text-decoration: none;
+		font-size: var(--sl-text-sm);
+	}
+	a:hover {
+		color: var(--sl-color-white);
+	}
+</style>

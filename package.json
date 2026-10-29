@@ -1,0 +1,16 @@
+{
+  "name": "silverkeep-studios-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "docs:gen": "python3 ../Silverkeep/Tools/DocGen/render_docs.py --api ../Silverkeep/Docs/Generated/silverscript_api.toml --schemas ../Silverkeep/Content/Data/Schemas --out src/content/docs/docs/reference --link-base /SilverkeepStudiosSite/docs/reference --public-out public --schema-url-base /SilverkeepStudiosSite/schemas"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.7",
+    "astro": "^7.4.4"
+  }
+}
