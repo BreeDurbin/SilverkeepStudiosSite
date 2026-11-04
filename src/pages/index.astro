@@ -22,12 +22,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
 ---
 
-<BaseLayout description="Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD rules, where the story emerges from your choices and you can build worlds of your own.">
+<BaseLayout description="Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD ruleset.">
 	<section class="hero">
 		<div class="container hero-inner">
 			<p class="eyebrow">Silverkeep Studios</p>
 			<h1>Project Silverkeep</h1>
-			<p class="tagline">Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD rules, where the story emerges from your choices and you can build worlds of your own.</p>
+			<p class="tagline">Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD ruleset.</p>
 			<div class="hero-actions">
 				<a class="button button-primary" href={`${base}/blog/`}>Read the devlog</a>
 				<a class="button button-secondary" href={`${base}/docs/`}>Explore the docs</a>
