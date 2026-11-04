@@ -56,6 +56,44 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 			</div>
 		</div>
 	</section>
+	
+	<section class="section">
+    	<div class="container multiplayer">
+    		<div>
+    			<h2 class="section-title">Multiplayer Support</h2>
+    			<p>
+    				Project Silverkeep supports cooperative multiplayer
+    				with player-hosted worlds. One player hosts the game while friends join
+    				as clients, exploring the world and adventuring together.
+    			</p>
+    			<p>
+    				The host maintains authority over the game simulation and world state,
+    				keeping gameplay consistent for everyone connected. Persistent worlds
+    				let you save your progress and pick up where you left off, without
+    				depending on centralized servers or an always-online service.
+    			</p>
+    			<p>
+    				Whether you're running a private campaign with friends or building a
+    				persistent world for a larger community, Silverkeep is designed to put
+    				world ownership in the hands of its players.
+    			</p>
+    		</div>
+    		<div class="multiplayer-features">
+    			<div class="feature">
+    				<h3>Player-Hosted Worlds</h3>
+    				<p>Host your own campaign and invite friends to join your adventure.</p>
+    			</div>
+    			<div class="feature">
+    				<h3>Persistent Campaigns</h3>
+    				<p>Save your world and continue your adventures across multiple sessions.</p>
+    			</div>
+    			<div class="feature">
+    				<h3>Host-Authoritative Simulation</h3>
+    				<p>The host owns the simulation, keeping gameplay and world state consistent across connected players.</p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
 
 	{
 		posts.length > 0 && (
@@ -142,6 +180,23 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 		gap: 2rem;
 		align-items: center;
 	}
+	
+	.multiplayer {
+    	display: grid;
+    	gap: 2rem;
+    	align-items: center;
+    }
+    
+    .multiplayer-features {
+    	display: grid;
+    	gap: 1rem;
+    }
+    
+    @media (min-width: 56rem) {
+    	.multiplayer {
+    		grid-template-columns: 1fr 1fr;
+    	}
+    }
 
 	@media (min-width: 56rem) {
 		.modding {
