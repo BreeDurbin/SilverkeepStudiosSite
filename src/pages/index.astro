@@ -27,7 +27,7 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 		<div class="container hero-inner">
 			<p class="eyebrow">Silverkeep Studios</p>
 			<h1>Project Silverkeep</h1>
-			<p class="tagline">A fantasy role-playing game.</p>
+			<p class="tagline">Project Silverkeep is a fantasy role-playing game built on the 3.5 edition SRD rules, where the story emerges from your choices and you can build worlds of your own.</p>
 			<div class="hero-actions">
 				<a class="button button-primary" href={`${base}/blog/`}>Read the devlog</a>
 				<a class="button button-secondary" href={`${base}/docs/`}>Explore the docs</a>
@@ -63,34 +63,13 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
     			<h2 class="section-title">Multiplayer Support</h2>
     			<p>
     				Project Silverkeep supports cooperative multiplayer
-    				with player-hosted worlds. One player hosts the game while friends join
-    				as clients, exploring the world and adventuring together.
-    			</p>
-    			<p>
-    				The host maintains authority over the game simulation and world state,
-    				keeping gameplay consistent for everyone connected. Persistent worlds
-    				let you save your progress and pick up where you left off, without
-    				depending on centralized servers or an always-online service.
+    				with player-hosted worlds. Host a game to play with your friends or setup your own persistent world server for a larger playerbase.
     			</p>
     			<p>
     				Whether you're running a private campaign with friends or building a
     				persistent world for a larger community, Silverkeep is designed to put
     				world ownership in the hands of its players.
     			</p>
-    		</div>
-    		<div class="multiplayer-features">
-    			<div class="feature">
-    				<h3>Player-Hosted Worlds</h3>
-    				<p>Host your own campaign and invite friends to join your adventure.</p>
-    			</div>
-    			<div class="feature">
-    				<h3>Persistent Campaigns</h3>
-    				<p>Save your world and continue your adventures across multiple sessions.</p>
-    			</div>
-    			<div class="feature">
-    				<h3>Host-Authoritative Simulation</h3>
-    				<p>The host owns the simulation, keeping gameplay and world state consistent across connected players.</p>
-    			</div>
     		</div>
     	</div>
     </section>
@@ -185,11 +164,6 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
     	display: grid;
     	gap: 2rem;
     	align-items: center;
-    }
-    
-    .multiplayer-features {
-    	display: grid;
-    	gap: 1rem;
     }
     
     @media (min-width: 56rem) {
