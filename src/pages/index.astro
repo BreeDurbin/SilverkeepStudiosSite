@@ -5,30 +5,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// Drawn from Silverkeep/Docs/Design/Design_Pillars.md and Tonal_Pillars.md.
-const features = [
-	{
-		title: 'Your choices write the story',
-		body: 'No invulnerable plot fences and no unkillable quest-givers. If you kill the one person who knew the way forward, search their room: the story finds another path, and it is one you made.',
-	},
-	{
-		title: 'Crunchy, by the numbers',
-		body: 'Built on the 3.5 edition System Reference Document rules: ability scores, skill checks, saving throws, feats and class progression, resolved the way a tabletop table would.',
-	},
-	{
-		title: 'Cities run by guilds',
-		body: 'Nothing works without the guilds, and everything is worse because of them. Price-fixing bakers, licensed roof repairs and watchmen on the take: you feel the guilds before you meet a single member.',
-	},
-	{
-		title: 'Solve it your way',
-		body: 'Pick the pocket that holds the key, slip past the fight unseen, or talk your way out. Quests open up through the rules themselves, not through scripted exceptions.',
-	},
-	{
-		title: 'Build your own worlds',
-		body: 'Make modules with the toolset, script them in AngelScript through the Silverscript API, and define classes, races, feats and factions in plain TOML. Play alone, host friends, or run a persistent world on a dedicated server.',
-	},
-];
-
 const sampleScript = `// Content/Angelscripts/Guard_OnHeartbeat.as
 void OnHeartbeat(FEntityId Self)
 {
@@ -64,29 +40,9 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 	</section>
 
 	<section class="section">
-		<div class="container">
-			<h2 class="section-title">What we're building</h2>
-			<p class="section-lead">
-				Influenced by Neverwinter Nights and the tabletop games it grew from, Project Silverkeep is about
-				freedom, consequence, and worlds that players can make their own.
-			</p>
-			<ul class="features">
-				{
-					features.map((feature) => (
-						<li class="feature">
-							<h3>{feature.title}</h3>
-							<p>{feature.body}</p>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	</section>
-
-	<section class="section">
 		<div class="container modding">
 			<div>
-				<h2 class="section-title">Made to be modded</h2>
+				<h2 class="section-title">z</h2>
 				<p>
 					Game data lives in TOML files you can read and change. Creatures run scripts written in
 					<a href="https://www.angelcode.com/angelscript/">AngelScript</a>, the open-source scripting
@@ -165,15 +121,6 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 		gap: 0.75rem;
 		justify-content: center;
 		flex-wrap: wrap;
-	}
-
-	.features {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-		gap: 1rem;
 	}
 
 	.feature {
