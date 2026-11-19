@@ -7,10 +7,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "docs:gen": "python3 ../Silverkeep/Tools/DocGen/render_docs.py --api ../Silverkeep/Docs/Generated/silverscript_api.toml --schemas ../Silverkeep/Content/Data/Schemas --out src/content/docs/docs/reference --link-base /SilverkeepStudiosSite/docs/reference --public-out public --schema-url-base /SilverkeepStudiosSite/schemas"
+    "docs:gen": "npm run docs:gen:silverscript && npm run docs:gen:data && npm run docs:gen:console",
+    "docs:gen:silverscript": "python3 ../Silverkeep/Tools/DocGen/render_silverscript.py --api ../Silverkeep/Docs/Generated/silverscript_api.toml --out src/content/docs/docs/reference/silverscript --link-base /SilverkeepStudiosSite/docs/reference/silverscript",
+    "docs:gen:data": "python3 ../Silverkeep/Tools/DocGen/render_data_formats.py --schemas ../Silverkeep/Content/Data/Schemas --out src/content/docs/docs/reference/data --link-base /SilverkeepStudiosSite/docs/reference/data --public-out public --schema-url-base /SilverkeepStudiosSite/schemas",
+    "docs:gen:console": "python3 ../Silverkeep/Tools/DocGen/render_console_commands.py --commands ../Silverkeep/Docs/Generated/console_commands.toml --out src/content/docs/docs/reference/console --link-base /SilverkeepStudiosSite/docs/reference/console"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.7",
-    "astro": "^7.4.4"
+    "astro": "^7.4.4",
+    "starlight-sidebar-topics": "^0.9.0"
   }
 }

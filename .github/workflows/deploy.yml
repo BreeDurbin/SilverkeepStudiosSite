@@ -4,7 +4,8 @@
 # sent by Silverkeep's .github/workflows/docs.yml), or by hand.
 #
 # Needs the secret SILVERKEEP_READ_TOKEN: a fine-grained token with Contents: read on
-# BreeDurbin/Silverkeep, used to check out the generated API export, the schemas and the renderer.
+# BreeDurbin/Silverkeep, used to check out the generated exports (Silverscript API, console commands), the schemas
+# and the renderers.
 name: Deploy
 
 on:
@@ -45,15 +46,29 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generate the reference pages
+      # Three generators, one per docs topic (Tools/DocGen/README.md in Silverkeep).
+      - name: Generate the Silverscript API reference
         run: >
-          python silverkeep/Tools/DocGen/render_docs.py
+          python silverkeep/Tools/DocGen/render_silverscript.py
           --api silverkeep/Docs/Generated/silverscript_api.toml
+          --out src/content/docs/docs/reference/silverscript
+          --link-base /SilverkeepStudiosSite/docs/reference/silverscript
+
+      - name: Generate the data format reference
+        run: >
+          python silverkeep/Tools/DocGen/render_data_formats.py
           --schemas silverkeep/Content/Data/Schemas
-          --out src/content/docs/docs/reference
-          --link-base /SilverkeepStudiosSite/docs/reference
+          --out src/content/docs/docs/reference/data
+          --link-base /SilverkeepStudiosSite/docs/reference/data
           --public-out public
           --schema-url-base /SilverkeepStudiosSite/schemas
+
+      - name: Generate the console command reference
+        run: >
+          python silverkeep/Tools/DocGen/render_console_commands.py
+          --commands silverkeep/Docs/Generated/console_commands.toml
+          --out src/content/docs/docs/reference/console
+          --link-base /SilverkeepStudiosSite/docs/reference/console
 
       - uses: actions/setup-node@v4
         with:
