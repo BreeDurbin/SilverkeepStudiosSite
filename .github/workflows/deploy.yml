@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.SILVERKEEP_READ_TOKEN }}
           path: silverkeep
           sparse-checkout: |
-            Docs/Generated
+            Generated_Documentation
             Content/Data/Schemas
             Tools/DocGen
 
@@ -50,7 +50,7 @@ jobs:
       - name: Generate the Silverscript API reference
         run: >
           python silverkeep/Tools/DocGen/render_silverscript.py
-          --api silverkeep/Docs/Generated/silverscript_api.toml
+          --api silverkeep/Generated_Documentation/silverscript_api.toml
           --out src/content/docs/docs/reference/silverscript
           --link-base /SilverkeepStudiosSite/docs/reference/silverscript
 
@@ -66,7 +66,7 @@ jobs:
       - name: Generate the console command reference
         run: >
           python silverkeep/Tools/DocGen/render_console_commands.py
-          --commands silverkeep/Docs/Generated/console_commands.toml
+          --commands silverkeep/Generated_Documentation/console_commands.toml
           --out src/content/docs/docs/reference/console
           --link-base /SilverkeepStudiosSite/docs/reference/console
 

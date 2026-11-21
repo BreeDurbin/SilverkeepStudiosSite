@@ -1,18 +1,10 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
 import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
+import { blogSchema } from 'starlight-blog/schema';
 
+// Docs and devlog posts share Starlight's collection; posts are the entries under blog/ and add starlight-blog's
+// frontmatter (date, tags, excerpt, cover, draft, ...).
 export const collections = {
-	docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
-	blog: defineCollection({
-		loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-		schema: z.object({
-			title: z.string(),
-			description: z.string(),
-			pubDate: z.coerce.date(),
-			draft: z.boolean().default(false),
-		}),
-	}),
+	docs: defineCollection({ loader: docsLoader(), schema: docsSchema({ extend: (context) => blogSchema(context) }) }),
 };

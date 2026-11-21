@@ -2,6 +2,7 @@
 import { existsSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightBlog from 'starlight-blog';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
 
 // The reference pages are generated from the Silverkeep repo (`npm run docs:gen` locally, the deploy
@@ -84,11 +85,16 @@ export default defineConfig({
 			favicon: '/favicon.svg',
 			customCss: ['./src/styles/fonts.css', './src/styles/starlight.css'],
 			components: {
-				// Adds Home and Blog links to the docs header.
+				// Adds a Home link to the docs header, before the social icons (starlight-blog's RSS link).
 				SocialIcons: './src/components/StarlightNavLinks.astro',
 			},
-			// The docs home (a splash page, no sidebar) links to every topic.
-			plugins: [starlightSidebarTopics(topics)],
+			plugins: [
+				// The devlog: posts are src/content/docs/blog/*.md(x), served under /blog/ with tags, an RSS feed
+				// (/blog/rss.xml) and a Blog link in the header.
+				starlightBlog({ metrics: { readingTime: true } }),
+				// The docs home (a splash page, no sidebar) links to every topic. Blog pages keep the blog's own sidebar.
+				starlightSidebarTopics(topics, { exclude: ['/blog', '/blog/**/*'] }),
+			],
 		}),
 	],
 });

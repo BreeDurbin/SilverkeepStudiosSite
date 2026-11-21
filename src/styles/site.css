@@ -1,5 +1,5 @@
 /*
- * Landing page and blog styles, in the game's palette (Silverkeep/Docs/Design/Color_Palette.md).
+ * Landing page styles, in the game's palette.
  * Dark: charcoal slate background, sepia panels, parchment text, antique gold accents.
  * Light: ivory background, parchment panels, sepia text, burgundy accents.
  */
@@ -295,35 +295,6 @@ pre {
 .post-meta {
 	color: var(--text-muted);
 	font-size: 0.9rem;
-}
-
-/* ---- Blog posts ---- */
-
-.prose {
-	max-width: 42rem;
-}
-
-.prose h2 {
-	font-size: 1.5rem;
-	margin-top: 2.5rem;
-}
-
-.prose h3 {
-	font-size: 1.2rem;
-	margin-top: 2rem;
-}
-
-.prose blockquote {
-	margin: 1.5rem 0;
-	padding: 0.25rem 1.25rem;
-	border-left: 3px solid var(--accent);
-	color: var(--text-muted);
-}
-
-.prose :not(pre) > code {
-	background: var(--code-bg);
-	padding: 0.1em 0.35em;
-	border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {

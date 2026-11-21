@@ -1,5 +1,5 @@
 ---
-// Layout for the landing page and blog. The docs use Starlight's own layout; both share the palette,
+// Layout for the landing page. The docs and the blog (starlight-blog) use Starlight's own layout; both share the palette,
 // the fonts and the light/dark choice (stored under Starlight's `starlight-theme` key).
 import '../styles/fonts.css';
 import '../styles/site.css';
@@ -18,7 +18,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname.replace(base, '') || '/';
 const nav = [
 	{ href: `${base}/`, label: 'Home', current: path === '/' },
-	{ href: `${base}/blog/`, label: 'Blog', current: path.startsWith('/blog') },
+	{ href: `${base}/blog/`, label: 'Blog', current: false },
 	{ href: `${base}/docs/`, label: 'Docs', current: false },
 ];
 ---

@@ -8,15 +8,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const sampleScript = `// Content/Angelscripts/Guard_OnHeartbeat.as
 void OnHeartbeat(FEntityId Self)
 {
-    FCreatureData Guard =
-        GetEntityApi().GetCreatureData(Self);
+    FCreatureData Guard = Creatures::GetData(Self);
 
-    GetScriptApi().LogInfo(
-        Guard.Metadata.Name + " keeps watch.");
+    Log::Info(Guard.Metadata.Name + " keeps watch.");
 }`;
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+// Devlog posts are the docs entries under blog/ (starlight-blog); drafts show only in dev, as on the blog itself.
+const posts = (await getCollection('docs', ({ id, data }) => id.startsWith('blog/') && (import.meta.env.DEV || !data.draft)))
+	.sort((a, b) => b.data.date!.valueOf() - a.data.date!.valueOf())
 	.slice(0, 3);
 
 const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
@@ -82,9 +81,9 @@ const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 
 					<ul class="post-list">
 						{posts.map((post) => (
 							<li>
-								<a href={`${base}/blog/${post.id}/`}>{post.data.title}</a>
+								<a href={`${base}/${post.id}/`}>{post.data.title}</a>
 								<p class="post-meta">
-									<time datetime={post.data.pubDate.toISOString()}>{dateFormat.format(post.data.pubDate)}</time>
+									<time datetime={post.data.date!.toISOString()}>{dateFormat.format(post.data.date!)}</time>
 								</p>
 								<p>{post.data.description}</p>
 							</li>

@@ -1,12 +1,14 @@
 ---
 title: Introducing Project Silverkeep
 description: What we're building, what we care about, and where to follow along.
-pubDate: 2026-10-29
+date: 2026-10-29
 ---
 
 Welcome to the first devlog for **Project Silverkeep**, a fantasy role-playing game we're building in Unreal Engine.
 
 This post is a short introduction: what the game is, the ideas behind it, and what you'll find on this site.
+
+<!-- excerpt -->
 
 ## The short version
 

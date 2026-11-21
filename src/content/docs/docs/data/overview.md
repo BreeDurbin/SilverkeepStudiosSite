@@ -6,15 +6,15 @@ sidebar:
   order: 2
 ---
 
-Most of Project Silverkeep's rules and content are data, not code. Classes, races, feats, skills, creatures, factions and sounds are each defined in [TOML](https://toml.io/) files the game reads when it starts.
+Most of Project Silverkeep's rules and content are data, not code. Classes, creature types (races among them), feats, skills, creatures, factions and sounds are each defined in [TOML](https://toml.io/) files the game reads when it starts.
 
 ## Where data lives
 
 | Folder | Contents |
 |---|---|
 | `Content/Data/Classes/` | Character classes |
-| `Content/Data/Races/` | Playable races |
-| `Content/Data/Feats/General/`, `Content/Data/Feats/Racial/` | Feats |
+| `Content/Data/CreatureTypes/` | Creature types: each one's race (if any), type and subtypes. Those marked `playable` are the races offered in character creation |
+| `Content/Data/Feats/General/`, `Content/Data/Feats/Racial/`, `Content/Data/Feats/Class/` | Feats |
 | `Content/Data/Skills/` | Skills |
 | `Content/Data/Creatures/` | Creature templates |
 | `Content/Data/Factions/` | Factions |
