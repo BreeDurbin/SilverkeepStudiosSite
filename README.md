@@ -52,7 +52,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
   - No page has a preview image yet.
 - **Header navigation.**
   - Landing page: Home, Blog and Docs, plus the theme toggle.
-  - Docs and devlog: Home (`src/components/StarlightNavLinks.astro`), Blog (added by starlight-blog), the RSS icon, search and the theme picker.
+  - Docs and devlog: the site title, then Home, Blog and Docs (`src/components/StarlightSiteTitle.astro`, the current section highlighted), then search, the RSS icon and the theme picker. Home, Blog and Docs show at every width; on narrow screens the title text is hidden to make room.
 
 ---
 
@@ -85,7 +85,7 @@ SilverkeepStudiosSite/
 └── src/
     ├── content.config.ts       The docs collection: Starlight's schema extended with starlight-blog's frontmatter
     ├── components/
-    │   └── StarlightNavLinks.astro   Docs header: Home link, then Starlight's social icons (RSS)
+    │   └── StarlightSiteTitle.astro  Docs and blog header: site title, then Home, Blog and Docs links
     ├── layouts/
     │   └── BaseLayout.astro    The landing page's layout: head metadata, header, footer, theme toggle
     ├── pages/
@@ -308,10 +308,10 @@ Then rerun the commandlet and commit the export. `Tools/DocGen/README.md` in Sil
   - Headings use Cinzel, the game's display face, loaded from Google Fonts in `src/styles/fonts.css` and exposed as `--font-display`.
   - Body text uses the system font.
 - **Component styles.** Landing page sections are styled in `index.astro`'s own `<style>` block. Shared pieces (buttons, eyebrow labels, section titles, header, footer) are in `site.css`.
-- **Starlight overrides.** `astro.config.mjs` sets `customCss` (the two Starlight style files) and replaces Starlight's `SocialIcons` component with `StarlightNavLinks.astro`.
-  - starlight-blog overrides `MarkdownContent` and `ThemeSelect`.
+- **Starlight overrides.** `astro.config.mjs` sets `customCss` (the two Starlight style files) and replaces Starlight's `SiteTitle` component with `StarlightSiteTitle.astro`. starlight-blog's own header link is turned off (`navigation: 'none'`).
+  - starlight-blog overrides `MarkdownContent`.
   - starlight-sidebar-topics overrides `Sidebar`.
-  - Don't override those three yourself without building on the plugins' versions.
+  - Don't override `MarkdownContent` or `Sidebar` yourself without building on the plugins' versions.
 
 ---
 

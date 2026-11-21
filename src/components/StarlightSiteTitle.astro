@@ -1,0 +1,55 @@
+---
+// Replaces Starlight's site title in the docs and blog header: the title, then the site's three sections (Home,
+// Blog, Docs), the same links the landing page's header has. The title slot shows at every width, unlike the
+// header's right-hand group, so the links stay on narrow screens; there the title text gives way to them.
+import Default from '@astrojs/starlight/components/SiteTitle.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(base, '');
+const links = [
+	{ href: `${base}/`, label: 'Home', current: false },
+	{ href: `${base}/blog/`, label: 'Blog', current: path.startsWith('/blog') },
+	{ href: `${base}/docs/silverscript/getting-started/`, label: 'Docs', current: path.startsWith('/docs') },
+];
+---
+
+<div class="title-and-links">
+	<Default />
+	<nav aria-label="Site">
+		{
+			links.map((link) => (
+				<a href={link.href} aria-current={link.current ? 'page' : undefined}>
+					{link.label}
+				</a>
+			))
+		}
+	</nav>
+</div>
+
+<style>
+	.title-and-links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-width: 0;
+	}
+	nav {
+		display: flex;
+		gap: 1rem;
+		flex-shrink: 0;
+	}
+	a {
+		color: var(--sl-color-gray-2);
+		text-decoration: none;
+		font-size: var(--sl-text-sm);
+	}
+	a:hover,
+	a[aria-current='page'] {
+		color: var(--sl-color-text-accent);
+	}
+	@media (max-width: 36rem) {
+		.title-and-links :global(.site-title span) {
+			display: none;
+		}
+	}
+</style>
