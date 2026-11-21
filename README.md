@@ -29,7 +29,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
 | Devlog | `/blog/` | Paged post list (5 per page) with excerpts, reading time and a sidebar of recent posts and tags | [starlight-blog](https://starlight-blog-docs.vercel.app/) |
 | Devlog post | `/blog/<slug>/` | One post, with date, reading time, tags and previous/next links | `src/content/docs/blog/<slug>.md(x)` |
 | Tag pages | `/blog/tags/<tag>/` | Every post with that tag. Created automatically once a post uses `tags` | starlight-blog |
-| RSS feed | `/blog/rss.xml` | The devlog feed. Its only link is the RSS icon beside the site title in the docs and blog header; every docs page's `<head>` also advertises it to feed readers | starlight-blog |
+| RSS feed | `/blog/rss.xml` | The devlog feed. Its only link is the RSS icon beside the site title on blog pages; every docs page's `<head>` also advertises it to feed readers | starlight-blog |
 | Docs redirect | `/docs/` | No page of its own: redirects to the Silverscript getting-started page, where every Docs link goes | `redirects` in `astro.config.mjs` |
 | Silverscript topic | `/docs/silverscript/…`, `/docs/reference/silverscript/…` | Getting started, then the generated API reference: one page per API namespace, plus types, enums, globals and containers | Hand-written page plus generated pages |
 | Data formats topic | `/docs/data/…`, `/docs/reference/data/…` | Data files overview, then one generated page per TOML data format, each with a downloadable schema | Hand-written page plus generated pages |
@@ -52,7 +52,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
   - No page has a preview image yet.
 - **Header navigation.**
   - Landing page: Home, Blog and Docs, plus the theme toggle.
-  - Docs and devlog: on the left, the site title and the devlog's RSS icon; in the middle, search; on the right, Home, Blog and Docs (styled like the landing page's links, the current section highlighted), then the theme picker. On narrow screens, where Starlight hides the right-hand side, Home, Blog and Docs move beside the RSS icon and the title text is hidden to make room.
+  - Docs and devlog: on the left, the site title, plus the devlog's RSS icon on blog pages only; in the middle, search; on the right, Home, Blog and Docs (styled like the landing page's links, the current section highlighted), then the theme picker. On narrow screens, where Starlight hides the right-hand side, Home, Blog and Docs move beside the RSS icon and the title text is hidden to make room.
 
 ---
 
@@ -86,7 +86,7 @@ SilverkeepStudiosSite/
     ├── content.config.ts       The docs collection: Starlight's schema extended with starlight-blog's frontmatter
     ├── components/
     │   ├── SiteLinks.astro             Home, Blog and Docs links for the docs and blog header
-    │   ├── StarlightSiteTitle.astro    Header left: site title, RSS icon (and the links on narrow screens)
+    │   ├── StarlightSiteTitle.astro    Header left: site title, RSS icon on blog pages (and the links on narrow screens)
     │   └── StarlightSocialIcons.astro  Header right, before the theme picker: the links on wider screens
     ├── routeData.ts            Starlight route middleware: drops starlight-blog's RSS link from the blog sidebar
     ├── layouts/
