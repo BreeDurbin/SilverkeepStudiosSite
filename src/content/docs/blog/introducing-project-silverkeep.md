@@ -30,7 +30,7 @@ It's influenced by the classic toolset-driven RPGs and the tabletop games they g
 
 Building worlds is central to the game, not an afterthought. Game data (classes, races, feats, factions, creatures) lives in plain TOML files, and creatures run scripts written in [AngelScript](https://www.angelcode.com/angelscript/), an open-source scripting language by Andreas Jönsson. Silverscript is Project Silverkeep's scripting API for AngelScript: the objects and functions those scripts use to reach the game.
 
-The [documentation](../../docs/) is already up. It covers the Silverscript API and every data format, generated from the game itself so it stays in step with each build.
+The [documentation](../../docs/silverscript/getting-started/) is already up. It covers the Silverscript API and every data format, generated from the game itself so it stays in step with each build.
 
 ## What's next
 

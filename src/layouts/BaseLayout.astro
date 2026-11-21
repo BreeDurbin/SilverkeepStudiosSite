@@ -19,7 +19,7 @@ const path = Astro.url.pathname.replace(base, '') || '/';
 const nav = [
 	{ href: `${base}/`, label: 'Home', current: path === '/' },
 	{ href: `${base}/blog/`, label: 'Blog', current: false },
-	{ href: `${base}/docs/`, label: 'Docs', current: false },
+	{ href: `${base}/docs/silverscript/getting-started/`, label: 'Docs', current: false },
 ];
 ---
 
@@ -86,7 +86,7 @@ const nav = [
 			<div class="container footer-row">
 				<p>© {new Date().getFullYear()} Silverkeep Studios</p>
 				<p>
-					<a href={`${base}/blog/`}>Blog</a> · <a href={`${base}/docs/`}>Docs</a>
+					<a href={`${base}/blog/`}>Blog</a> · <a href={`${base}/docs/silverscript/getting-started/`}>Docs</a>
 				</p>
 			</div>
 		</footer>

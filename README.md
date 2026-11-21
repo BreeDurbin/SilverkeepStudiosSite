@@ -30,7 +30,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
 | Devlog post | `/blog/<slug>/` | One post, with date, reading time, tags and previous/next links | `src/content/docs/blog/<slug>.md(x)` |
 | Tag pages | `/blog/tags/<tag>/` | Every post with that tag. Created automatically once a post uses `tags` | starlight-blog |
 | RSS feed | `/blog/rss.xml` | The devlog feed, linked from the docs header's RSS icon and advertised in every docs page's `<head>` | starlight-blog |
-| Docs home | `/docs/` | Splash page (no sidebar) linking to every docs topic | `src/content/docs/docs/index.md` |
+| Docs redirect | `/docs/` | No page of its own: redirects to the Silverscript getting-started page, where every Docs link goes | `redirects` in `astro.config.mjs` |
 | Silverscript topic | `/docs/silverscript/…`, `/docs/reference/silverscript/…` | Getting started, then the generated API reference: one page per API namespace, plus types, enums, globals and containers | Hand-written page plus generated pages |
 | Data formats topic | `/docs/data/…`, `/docs/reference/data/…` | Data files overview, then one generated page per TOML data format, each with a downloadable schema | Hand-written page plus generated pages |
 | Console commands topic | `/docs/reference/console/…` | One generated page per custom console command | Generated pages only |
@@ -97,7 +97,6 @@ SilverkeepStudiosSite/
     └── content/docs/           Everything Starlight renders; the path below it is the URL
         ├── blog/               Devlog posts → /blog/<file name>/
         └── docs/               Docs → /docs/…
-            ├── index.md        Docs home (splash)
             ├── silverscript/   Hand-written Silverscript guides
             ├── data/           Hand-written data format guides
             └── reference/      (generated, gitignored) silverscript/, data/, console/
@@ -233,10 +232,10 @@ Only the host can do this.
 ### Links
 
 Astro doesn't add the `/SilverkeepStudiosSite` base path to links in Markdown. Use either:
-- **a relative link**, such as `[the docs](../../docs/)`;
-- **a full path** that includes the base, such as `/SilverkeepStudiosSite/docs/`.
+- **a relative link**, such as `[the docs](../../docs/silverscript/getting-started/)`;
+- **a full path** that includes the base, such as `/SilverkeepStudiosSite/docs/silverscript/getting-started/`.
 
-A plain `/docs/` points outside the site.
+A plain `/docs/…` path points outside the site.
 
 ---
 
@@ -260,7 +259,7 @@ sidebar:
 
 Pages under `/blog/` are left out of every topic.
 
-**To add a topic,** add an entry with a `label`, the `link` to its first page, an `icon` ([Starlight icon names](https://starlight.astro.build/reference/icons/)) and its `items`. Then link it from the docs home (`docs/index.md`).
+**To add a topic,** add an entry with a `label`, the `link` to its first page, an `icon` ([Starlight icon names](https://starlight.astro.build/reference/icons/)) and its `items`. The topic switcher at the top of the sidebar lists it automatically.
 
 Starlight's [frontmatter reference](https://starlight.astro.build/reference/frontmatter/) and [components](https://starlight.astro.build/components/using-components/) apply to docs pages. The same goes for code blocks, MDX and the base path rule for links described under [Writing a devlog post](#writing-a-devlog-post).
 
@@ -342,7 +341,7 @@ Then rerun the commandlet and commit the export. `Tools/DocGen/README.md` in Sil
 ## Changing the URL
 
 The site is served from the repo's GitHub Pages path, `/SilverkeepStudiosSite`. That path appears in:
-- `astro.config.mjs`: `site` and `base`;
+- `astro.config.mjs`: `site`, `base` and the `/docs` redirect's destination;
 - `package.json`: the `--link-base` and `--schema-url-base` arguments of the `docs:gen:*` scripts;
 - `.github/workflows/deploy.yml`: the same arguments in the render steps;
 - hand-written content that links with full paths.

@@ -77,6 +77,8 @@ export default defineConfig({
 	// `docs:gen` in package.json and the render step in .github/workflows/deploy.yml.
 	base: '/SilverkeepStudiosSite',
 	trailingSlash: 'ignore',
+	// There's no docs home page: old links to /docs/ land on the first docs page.
+	redirects: { '/docs': '/SilverkeepStudiosSite/docs/silverscript/getting-started/' },
 	output: 'static',
 	integrations: [
 		starlight({
@@ -92,7 +94,7 @@ export default defineConfig({
 				// The devlog: posts are src/content/docs/blog/*.md(x), served under /blog/ with tags, an RSS feed
 				// (/blog/rss.xml) and a Blog link in the header.
 				starlightBlog({ metrics: { readingTime: true } }),
-				// The docs home (a splash page, no sidebar) links to every topic. Blog pages keep the blog's own sidebar.
+				// Docs links go straight to the Silverscript topic's first page. Blog pages keep the blog's own sidebar.
 				starlightSidebarTopics(topics, { exclude: ['/blog', '/blog/**/*'] }),
 			],
 		}),
