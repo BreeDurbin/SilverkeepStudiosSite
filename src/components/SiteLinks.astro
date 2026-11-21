@@ -1,0 +1,43 @@
+---
+// Home, Blog and Docs for the docs and blog header, styled like the landing page's header links (site.css,
+// `.site-header nav a`) in Starlight's matching palette colours. The current section is highlighted.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(base, '');
+const links = [
+	{ href: `${base}/`, label: 'Home', current: false },
+	{ href: `${base}/blog/`, label: 'Blog', current: path.startsWith('/blog') },
+	{ href: `${base}/docs/silverscript/getting-started/`, label: 'Docs', current: path.startsWith('/docs') },
+];
+---
+
+<nav class="site-links" aria-label="Site">
+	{
+		links.map((link) => (
+			<a href={link.href} aria-current={link.current ? 'page' : undefined}>
+				{link.label}
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.site-links {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+	a {
+		display: inline-block;
+		padding: 0.4rem 0.7rem;
+		border-radius: 6px;
+		color: var(--sl-color-gray-1);
+		font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+		font-size: 1.0625rem;
+		line-height: 1.65;
+		text-decoration: none;
+	}
+	a:hover,
+	a[aria-current='page'] {
+		color: var(--sl-color-accent);
+	}
+</style>

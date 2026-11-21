@@ -87,12 +87,16 @@ export default defineConfig({
 			favicon: '/favicon.svg',
 			customCss: ['./src/styles/fonts.css', './src/styles/starlight.css'],
 			components: {
-				// The header's site title, followed by Home, Blog and Docs links, on docs and blog pages alike.
+				// The header: the site title and the devlog's RSS icon on the left, Home, Blog and Docs left of the
+				// theme picker (beside the title on narrow screens), on docs and blog pages alike.
 				SiteTitle: './src/components/StarlightSiteTitle.astro',
+				SocialIcons: './src/components/StarlightSocialIcons.astro',
 			},
+			// Drops starlight-blog's RSS link from the blog sidebar; the header's icon is the only one.
+			routeMiddleware: './src/routeData.ts',
 			plugins: [
 				// The devlog: posts are src/content/docs/blog/*.md(x), served under /blog/ with tags, an RSS feed
-				// (/blog/rss.xml). Its own header link is off: StarlightSiteTitle.astro links Home, Blog and Docs.
+				// (/blog/rss.xml). Its own header link is off: the header components link Home, Blog and Docs.
 				starlightBlog({ navigation: 'none', metrics: { readingTime: true } }),
 				// Docs links go straight to the Silverscript topic's first page. Blog pages keep the blog's own sidebar.
 				starlightSidebarTopics(topics, { exclude: ['/blog', '/blog/**/*'] }),

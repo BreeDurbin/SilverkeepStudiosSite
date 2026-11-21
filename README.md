@@ -29,7 +29,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
 | Devlog | `/blog/` | Paged post list (5 per page) with excerpts, reading time and a sidebar of recent posts and tags | [starlight-blog](https://starlight-blog-docs.vercel.app/) |
 | Devlog post | `/blog/<slug>/` | One post, with date, reading time, tags and previous/next links | `src/content/docs/blog/<slug>.md(x)` |
 | Tag pages | `/blog/tags/<tag>/` | Every post with that tag. Created automatically once a post uses `tags` | starlight-blog |
-| RSS feed | `/blog/rss.xml` | The devlog feed, linked from the docs header's RSS icon and advertised in every docs page's `<head>` | starlight-blog |
+| RSS feed | `/blog/rss.xml` | The devlog feed. Its only link is the RSS icon beside the site title in the docs and blog header; every docs page's `<head>` also advertises it to feed readers | starlight-blog |
 | Docs redirect | `/docs/` | No page of its own: redirects to the Silverscript getting-started page, where every Docs link goes | `redirects` in `astro.config.mjs` |
 | Silverscript topic | `/docs/silverscript/…`, `/docs/reference/silverscript/…` | Getting started, then the generated API reference: one page per API namespace, plus types, enums, globals and containers | Hand-written page plus generated pages |
 | Data formats topic | `/docs/data/…`, `/docs/reference/data/…` | Data files overview, then one generated page per TOML data format, each with a downloadable schema | Hand-written page plus generated pages |
@@ -52,7 +52,7 @@ It's a static [Astro](https://astro.build/) site that uses [Starlight](https://s
   - No page has a preview image yet.
 - **Header navigation.**
   - Landing page: Home, Blog and Docs, plus the theme toggle.
-  - Docs and devlog: the site title, then Home, Blog and Docs (`src/components/StarlightSiteTitle.astro`, the current section highlighted), then search, the RSS icon and the theme picker. Home, Blog and Docs show at every width; on narrow screens the title text is hidden to make room.
+  - Docs and devlog: on the left, the site title and the devlog's RSS icon; in the middle, search; on the right, Home, Blog and Docs (styled like the landing page's links, the current section highlighted), then the theme picker. On narrow screens, where Starlight hides the right-hand side, Home, Blog and Docs move beside the RSS icon and the title text is hidden to make room.
 
 ---
 
@@ -85,7 +85,10 @@ SilverkeepStudiosSite/
 └── src/
     ├── content.config.ts       The docs collection: Starlight's schema extended with starlight-blog's frontmatter
     ├── components/
-    │   └── StarlightSiteTitle.astro  Docs and blog header: site title, then Home, Blog and Docs links
+    │   ├── SiteLinks.astro             Home, Blog and Docs links for the docs and blog header
+    │   ├── StarlightSiteTitle.astro    Header left: site title, RSS icon (and the links on narrow screens)
+    │   └── StarlightSocialIcons.astro  Header right, before the theme picker: the links on wider screens
+    ├── routeData.ts            Starlight route middleware: drops starlight-blog's RSS link from the blog sidebar
     ├── layouts/
     │   └── BaseLayout.astro    The landing page's layout: head metadata, header, footer, theme toggle
     ├── pages/
@@ -308,7 +311,7 @@ Then rerun the commandlet and commit the export. `Tools/DocGen/README.md` in Sil
   - Headings use Cinzel, the game's display face, loaded from Google Fonts in `src/styles/fonts.css` and exposed as `--font-display`.
   - Body text uses the system font.
 - **Component styles.** Landing page sections are styled in `index.astro`'s own `<style>` block. Shared pieces (buttons, eyebrow labels, section titles, header, footer) are in `site.css`.
-- **Starlight overrides.** `astro.config.mjs` sets `customCss` (the two Starlight style files) and replaces Starlight's `SiteTitle` component with `StarlightSiteTitle.astro`. starlight-blog's own header link is turned off (`navigation: 'none'`).
+- **Starlight overrides.** `astro.config.mjs` sets `customCss` (the two Starlight style files) replaces Starlight's `SiteTitle` and `SocialIcons` components with `StarlightSiteTitle.astro` and `StarlightSocialIcons.astro`, and adds `src/routeData.ts` as route middleware. starlight-blog's own header link is turned off (`navigation: 'none'`).
   - starlight-blog overrides `MarkdownContent`.
   - starlight-sidebar-topics overrides `Sidebar`.
   - Don't override `MarkdownContent` or `Sidebar` yourself without building on the plugins' versions.

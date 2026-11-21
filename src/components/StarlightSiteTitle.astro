@@ -1,54 +1,51 @@
 ---
-// Replaces Starlight's site title in the docs and blog header: the title, then the site's three sections (Home,
-// Blog, Docs), the same links the landing page's header has. The title slot shows at every width, unlike the
-// header's right-hand group, so the links stay on narrow screens; there the title text gives way to them.
+// Replaces Starlight's site title in the docs and blog header: the title, then the devlog's RSS feed (the site's
+// only RSS link). On narrow screens, where Starlight hides the header's right-hand side, the Home, Blog and Docs
+// links follow here instead (StarlightSocialIcons.astro shows them on wider screens), and the title text gives
+// way to them.
+import { Icon } from '@astrojs/starlight/components';
 import Default from '@astrojs/starlight/components/SiteTitle.astro';
+import SiteLinks from './SiteLinks.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const path = Astro.url.pathname.replace(base, '');
-const links = [
-	{ href: `${base}/`, label: 'Home', current: false },
-	{ href: `${base}/blog/`, label: 'Blog', current: path.startsWith('/blog') },
-	{ href: `${base}/docs/silverscript/getting-started/`, label: 'Docs', current: path.startsWith('/docs') },
-];
 ---
 
-<div class="title-and-links">
+<div class="title-row">
 	<Default />
-	<nav aria-label="Site">
-		{
-			links.map((link) => (
-				<a href={link.href} aria-current={link.current ? 'page' : undefined}>
-					{link.label}
-				</a>
-			))
-		}
-	</nav>
+	<a class="rss" href={`${base}/blog/rss.xml`} aria-label="Devlog RSS feed" title="Devlog RSS feed">
+		<Icon name="rss" size="1.25rem" />
+	</a>
+	<div class="narrow-site-links">
+		<SiteLinks />
+	</div>
 </div>
 
 <style>
-	.title-and-links {
+	.title-row {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
+		gap: 1rem;
 		min-width: 0;
 	}
-	nav {
+	.rss {
 		display: flex;
-		gap: 1rem;
+		flex-shrink: 0;
+		color: var(--sl-color-gray-1);
+	}
+	.rss:hover {
+		color: var(--sl-color-accent);
+	}
+	.narrow-site-links {
 		flex-shrink: 0;
 	}
-	a {
-		color: var(--sl-color-gray-2);
-		text-decoration: none;
-		font-size: var(--sl-text-sm);
-	}
-	a:hover,
-	a[aria-current='page'] {
-		color: var(--sl-color-text-accent);
+	/* Starlight shows the header's right-hand side (and StarlightSocialIcons.astro) from 50rem. */
+	@media (min-width: 50rem) {
+		.narrow-site-links {
+			display: none;
+		}
 	}
 	@media (max-width: 36rem) {
-		.title-and-links :global(.site-title span) {
+		.title-row :global(.site-title span) {
 			display: none;
 		}
 	}

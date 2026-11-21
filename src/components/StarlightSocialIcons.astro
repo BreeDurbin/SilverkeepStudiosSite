@@ -1,0 +1,16 @@
+---
+// Replaces Starlight's social icons, which sit just left of the theme picker, with the Home, Blog and Docs links.
+// Starlight hides that part of the header on narrow screens, so there StarlightSiteTitle.astro shows the links
+// instead; they're left out of the mobile menu, which renders this component too.
+import SiteLinks from './SiteLinks.astro';
+---
+
+<div class="wide-site-links">
+	<SiteLinks />
+</div>
+
+<style>
+	:global(.mobile-preferences) .wide-site-links {
+		display: none;
+	}
+</style>
