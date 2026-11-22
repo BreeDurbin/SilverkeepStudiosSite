@@ -1,5 +1,20 @@
 # SilverkeepStudiosSite
 
+
+
+How to use cms for content gen:
+
+```
+//From git local repo
+npm run dev
+
+//Then navigate to:
+http://localhost:4321/SilverkeepStudiosSite/admin/index.html
+//Using Chromium
+
+//Make changes then commit and push to github to deploy them.
+```
+
 The Project Silverkeep website. It has three parts:
 - a landing page;
 - a devlog;
