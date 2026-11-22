@@ -4,33 +4,35 @@
  * Light mode swaps to ivory backgrounds with sepia text and burgundy accents.
  */
 
-:root {
-	--sl-color-accent-low: #3b3023;
-	--sl-color-accent: #b89b62;
-	--sl-color-accent-high: #e8d8b8;
-	--sl-color-white: #f0e6d2;
-	--sl-color-gray-1: #e8d8b8;
-	--sl-color-gray-2: #cdbfa3;
-	--sl-color-gray-3: #a3967e;
-	--sl-color-gray-4: #6f665a;
-	--sl-color-gray-5: #4a4540;
-	--sl-color-gray-6: #383a38;
-	--sl-color-black: #262826;
+:root,
+:root[data-theme='dark'] {
+	--sl-color-accent-low: var(--palette-accent-low);
+	--sl-color-accent: var(--palette-gold-500);
+	--sl-color-accent-high: var(--palette-parchment-200);
+	--sl-color-white: var(--palette-parchment-100);
+	--sl-color-gray-1: var(--palette-neutral-1);
+	--sl-color-gray-2: var(--palette-neutral-2);
+	--sl-color-gray-3: var(--palette-neutral-3);
+	--sl-color-gray-4: var(--palette-neutral-4);
+	--sl-color-gray-5: var(--palette-neutral-5);
+	--sl-color-gray-6: var(--palette-neutral-6);
+	--sl-color-gray-7: var(--palette-neutral-7);
+	--sl-color-black: var(--palette-slate-900);
 }
 
 :root[data-theme='light'] {
-	--sl-color-accent-low: #ecdcc8;
-	--sl-color-accent: #713f3b;
-	--sl-color-accent-high: #4a2622;
-	--sl-color-white: #2a1f17;
-	--sl-color-gray-1: #443326;
-	--sl-color-gray-2: #5a4a3c;
-	--sl-color-gray-3: #7a6a58;
-	--sl-color-gray-4: #a3967e;
-	--sl-color-gray-5: #cdbfa3;
-	--sl-color-gray-6: #e8d8b8;
-	--sl-color-gray-7: #efe5cf;
-	--sl-color-black: #f7f0e2;
+	--sl-color-accent-low: var(--palette-accent-low);
+	--sl-color-accent: var(--palette-gold-500);
+	--sl-color-accent-high: var(--palette-accent-high);
+	--sl-color-white: var(--palette-parchment-100);
+	--sl-color-gray-1: var(--palette-neutral-1);
+	--sl-color-gray-2: var(--palette-neutral-2);
+	--sl-color-gray-3: var(--palette-neutral-3);
+	--sl-color-gray-4: var(--palette-neutral-4);
+	--sl-color-gray-5: var(--palette-neutral-5);
+	--sl-color-gray-6: var(--palette-neutral-6);
+	--sl-color-gray-7: var(--palette-neutral-7);
+	--sl-color-black: var(--palette-slate-900);
 }
 
 .site-title,

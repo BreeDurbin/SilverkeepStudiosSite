@@ -85,7 +85,7 @@ export default defineConfig({
 			title: 'Project Silverkeep',
 			description: 'Documentation for Project Silverkeep: Silverscript, data formats, console commands and modding.',
 			favicon: '/favicon.svg',
-			customCss: ['./src/styles/fonts.css', './src/styles/starlight.css'],
+			customCss: ['./src/styles/fonts.css', './src/styles/palette.css' , './src/styles/starlight.css'],
 			components: {
 				// The header: the site title and the devlog's RSS icon on the left, Home, Blog and Docs left of the
 				// theme picker (beside the title on narrow screens), on docs and blog pages alike.
