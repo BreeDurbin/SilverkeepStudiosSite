@@ -1,0 +1,28 @@
+
+backend:
+  name: github
+  repo: BreeDurbin/SilverkeepStudiosSite
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+output:
+  omit_empty_optional_fields: true
+
+collections:
+  - name: blog
+    label: Devlog
+    label_singular: Post
+    folder: src/content/docs/blog
+    create: true
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Publication Date, widget: datetime }
+      - { name: excerpt, label: Excerpt, widget: text, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: draft, label: Draft, widget: boolean, required: false }
+      - { name: body, label: Content, widget: markdown }
+
