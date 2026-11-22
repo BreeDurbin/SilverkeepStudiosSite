@@ -1,62 +1,61 @@
 :root,
 :root[data-theme='dark'] {
-    --palette-slate-950: #141a16;
-    --palette-slate-900: #202a22;
-    --palette-slate-800: #303d32;
-    --palette-sepia-900: #493326;
-    --palette-sepia-800: #70472e;
+    --palette-slate-950: #1b1612;
+    --palette-slate-900: #261e17;
+    --palette-slate-800: #33281f;
+    --palette-sepia-900: #4d3421;
+    --palette-sepia-800: #6b472b;
 
-    --palette-parchment-100: #f4e6c7;
-    --palette-parchment-200: #ebd7ad;
-    --palette-parchment-400: #bba582;
+    --palette-parchment-100: #f7ebd2;
+    --palette-parchment-200: #ebd8b0;
+    --palette-parchment-400: #c2ab7e;
 
-    --palette-gold-500: #bd873d;
-    --palette-gold-400: #dca552;
-    --palette-accent-low: #3c3022;
-    --palette-accent-high: #f0ce8c;
+    --palette-gold-500: #c9973b;
+    --palette-gold-400: #e5b856;
+    --palette-accent-low: #422e19;
 
-    --palette-olive-500: #657c43;
+    --palette-olive-500: #6d8a4b;
 
-    --palette-neutral-1: #ebd7ad;
-    --palette-neutral-2: #cbb591;
-    --palette-neutral-3: #a49576;
-    --palette-neutral-4: #726b55;
-    --palette-neutral-5: #4a5045;
-    --palette-neutral-6: #303a30;
-    --palette-neutral-7: #141a16;
+    --palette-neutral-1: #ebd8b0;
+    --palette-neutral-2: #cfba91;
+    --palette-neutral-3: #a6916b;
+    --palette-neutral-4: #756348;
+    --palette-neutral-5: #524330;
+    --palette-neutral-6: #3b2f22;
+    --palette-neutral-7: #1b1612;
 
-    --palette-glow: rgba(189, 135, 61, 0.20);
+    --palette-glow: rgba(201, 151, 59, 0.22);
 
     color-scheme: dark;
 }
 
 :root[data-theme='light'] {
-    --palette-slate-950: #e4dfc9;
-    --palette-slate-900: #f2edda;
-    --palette-slate-800: #e5e4ce;
-    --palette-sepia-900: #e4cba9;
-    --palette-sepia-800: #c7a47c;
+    --palette-slate-950: #f2e4c4;
+    --palette-slate-900: #faf0d9;
+    --palette-slate-800: #f5e7c8;
+    --palette-sepia-900: #e5cfa3;
+    --palette-sepia-800: #c9ae7b;
 
-    --palette-parchment-100: #22291f;
-    --palette-parchment-200: #414a36;
-    --palette-parchment-400: #697052;
+    --palette-parchment-100: #291b10;
+    --palette-parchment-200: #452d1b;
+    --palette-parchment-400: #6e4c30;
 
-    --palette-gold-500: #956021;
-    --palette-gold-400: #794b18;
-    --palette-accent-low: #e9d8b9;
-    --palette-accent-high: #563b1d;
+    --palette-gold-500: #8f3729;
+    --palette-gold-400: #6e261b;
+    --palette-accent-low: #ebd5ad;
+    --palette-accent-high: #541b12;
 
-    --palette-olive-500: #526b35;
+    --palette-olive-500: #4c6b2d;
 
-    --palette-neutral-1: #414a36;
-    --palette-neutral-2: #5c654b;
-    --palette-neutral-3: #7c8467;
-    --palette-neutral-4: #a0a48a;
-    --palette-neutral-5: #c1c2a8;
-    --palette-neutral-6: #dcddc7;
-    --palette-neutral-7: #f2edda;
+    --palette-neutral-1: #3d2818;
+    --palette-neutral-2: #593d27;
+    --palette-neutral-3: #7a583b;
+    --palette-neutral-4: #9e7d5a;
+    --palette-neutral-5: #c4a87e;
+    --palette-neutral-6: #e3cca1;
+    --palette-neutral-7: #f2e4c4;
 
-    --palette-glow: rgba(149, 96, 33, 0.14);
+    --palette-glow: rgba(143, 55, 41, 0.16);
 
     color-scheme: light;
 }
